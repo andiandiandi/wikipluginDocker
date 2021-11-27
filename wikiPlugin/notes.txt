@@ -1,0 +1,21 @@
+files not deleting properly on server
+files not added properly on server
+
+//notes
+- kill process with port on linux: fuser -k 9000/tcp
+
+
+"onCommand:personalWikiPlugin.SelWikiContent",
+"onCommand:personalWikiPlugin.SelWikiFiles",
+/* debug
+{
+    "command": "personalWikiPlugin.SelWikiContent",
+    "title": "aaaa"
+},
+{
+    "command": "personalWikiPlugin.SelWikiFiles",
+    "title": "bbbb"
+},
+*/
+
+-callback when disconnected -> remove from session
