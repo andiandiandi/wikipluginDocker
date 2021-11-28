@@ -34,7 +34,7 @@
 				if (type == "file") {
 					decoded_data_fullpath = elem.getAttribute("data-fullpath")
 					base64_filepath = btoa(decoded_data_fullpath)
-					var url = "http://localhost:9000/sid/" + sid + "/filepath/" + base64_filepath
+					var url = window.location.origin + "/sid/" + sid + "/filepath/" + base64_filepath
 					window.location.href = url
 					return false
 				}
@@ -59,7 +59,7 @@
 			}
 		});
 
-		var ioSocket = io("http://localhost:9000/events");
+		var ioSocket = io(window.location.origin + "/events");
 		ioSocket.on("connect", function (msg) {
 			console.log("connected")
 			ioSocket.emit("subscribe", JSON.stringify([{ "eventname": "files_changed", "targetsid": sid }]))

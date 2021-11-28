@@ -1,8 +1,24 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getRangeOfCursorSelection = exports.getTextOfCursorSelection = void 0;
+exports.getRangeOfCursorSelection = exports.getTextOfCursorSelection = exports.getLocalIP = void 0;
 const debug_1 = require("./debug");
 const vscode = require("vscode");
+const config_1 = require("../config");
+const ifs = require("os").networkInterfaces();
+const getLocalIP = () => {
+    debug_1.Logger.Instance.print(config_1.default.externalIP);
+    debug_1.Logger.Instance.print(config_1.default.localIP);
+    if (config_1.default.externalIP)
+        return config_1.default.externalIP;
+    if (config_1.default.localIP)
+        return config_1.default.localIP;
+    const ip = Object.keys(ifs)
+        .map((key) => ifs[key].filter((key) => key.family === "IPv4" && !key.internal)[0])
+        .filter((x) => x)[0].address;
+    debug_1.Logger.Instance.print(ip);
+    return ip;
+};
+exports.getLocalIP = getLocalIP;
 const getTextOfCursorSelection = () => {
     const editor = vscode.window.activeTextEditor;
     if (!editor)

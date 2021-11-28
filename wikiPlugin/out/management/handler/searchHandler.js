@@ -21,7 +21,6 @@ class SearchHandler {
             else if (parsedRes["type"] === "deleted") {
             }
         }
-        //SearchOutputPanel
     }
     static getUserInput(emittingFuction) {
         const userInput = vscode.window.showInputBox();

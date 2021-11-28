@@ -237,6 +237,43 @@ function activate(context) {
         else
             debug_1.Logger.Instance.print("no active wikipage open in editor", "wordcountWholeWiki-command");
     }));
+    context.subscriptions.push(vscode.commands.registerCommand("personalWikiPlugin.OpenWikipage", () => {
+        /*
+        const userInput = vscode.window.showInputBox();
+        userInput.then((userInputSearchQuery) => {
+          if (userInputSearchQuery) {
+            Logger.Instance.print(
+              "Got openWikipage from user: " + userInputSearchQuery,
+              "openWikipage-command"
+            );
+            vscode.workspace.openTextDocument(userInputSearchQuery).then((a) => {
+              vscode.window.showTextDocument(a, 1, false);
+              vscode.window.activeTextEditor?.selections
+            });
+          } else
+            Logger.Instance.print(
+              "user cancelled input box for openWikipage-command",
+              "openWikipage-command"
+            );
+        });
+        */
+        const panel = vscode.window.createWebviewPanel("catCoding", "Cat Coding", vscode.ViewColumn.One, {});
+        function getWebviewContent() {
+            return `<!DOCTYPE html>
+      <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Cat Coding</title>
+      </head>
+      <body>
+          <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" width="300" />
+      </body>
+      </html>`;
+        }
+        // And set its HTML content
+        panel.webview.html = getWebviewContent();
+    }));
     context.subscriptions.push(vscode.commands.registerCommand("personalWikiPlugin.SearchQuery", () => {
         const rootFolder = pathManagement_1.PathManager.Instance.getDocumentWorkspaceFolder();
         if (rootFolder) {

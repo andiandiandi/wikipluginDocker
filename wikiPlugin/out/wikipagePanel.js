@@ -14,6 +14,7 @@ const vscode = require("vscode");
 var http = require("http");
 var base64 = require("base-64");
 const debug_1 = require("./management/debug");
+const vscodeUtility_1 = require("./management/vscodeUtility");
 class WikipagePanel {
     constructor(panel, extensionUri) {
         this._disposables = [];
@@ -83,6 +84,7 @@ class WikipagePanel {
             WikipagePanel.currentPanel._update();
     }
     dispose() {
+        debug_1.Logger.Instance.print("DISPOSING wikipagePanel");
         WikipagePanel.currentPanel = undefined;
         // Clean up our resources
         this._panel.dispose();
@@ -96,6 +98,10 @@ class WikipagePanel {
     _update() {
         return __awaiter(this, void 0, void 0, function* () {
             const webview = this._panel.webview;
+            this._panel.webview.html = "<body><p>hello</p></body>";
+            debug_1.Logger.Instance.print("UPDATED wikipagePanel");
+            return;
+            debug_1.Logger.Instance.print(vscodeUtility_1.getLocalIP() + "");
             if (WikipagePanel.filepath != undefined) {
                 debug_1.Logger.Instance.print("FiLePATH IN UPDATE: " + WikipagePanel.filepath + "\n", "wikipagePanel");
                 debug_1.Logger.Instance.print("FiLePATH IN UPDATE: " + base64.encode(WikipagePanel.filepath) + "\n", "wikipagePanel");
@@ -104,7 +110,7 @@ class WikipagePanel {
                     "/filepath/" +
                     base64.encode(WikipagePanel.filepath);
                 var options = {
-                    host: "localhost",
+                    host: vscodeUtility_1.getLocalIP(),
                     port: 9000,
                     path: path,
                     method: "GET", // do GET
@@ -116,7 +122,7 @@ class WikipagePanel {
                     });
                     res.on("end", () => {
                         debug_1.Logger.Instance.print("got html-data for wikipagePanel", "wikipagePanel");
-                        this._panel.webview.html = data;
+                        this._panel.webview.html = "<body><p>asdf</p></body>";
                     });
                 });
                 request.on("error", (e) => {
@@ -143,22 +149,9 @@ class WikipagePanel {
                         vscode.window.showErrorMessage(data.value);
                         break;
                     }
-                    //case "tokens": {
-                    //  await Util.globalState.update(accessTokenKey, data.accessToken);
-                    //  await Util.globalState.update(refreshTokenKey, data.refreshToken);
-                    //  break;
-                    //}
                 }
             }));
         });
-    }
-    getNonce() {
-        let text = "";
-        const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        for (let i = 0; i < 32; i++) {
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
-        }
-        return text;
     }
     _getHtmlForWebview(webview) {
         // // And the uri we use to load this script in the webview
@@ -170,53 +163,8 @@ class WikipagePanel {
         const stylesResetUri = webview.asWebviewUri(styleResetPath);
         const stylesMainUri = webview.asWebviewUri(stylesPathMainPath);
         const cssUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, "out", "compiled/swiper.css"));
-        // Use a nonce to only allow specific scripts to be run
-        const nonce = this.getNonce();
-        //const html = getHTML('http://localhost:9000');
-        const html = "a";
+        const html = "test";
         return html;
-        /*
-        return `<!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <!--
-                        Use a content security policy to only allow loading images from https or from our extension directory,
-                        and only allow scripts that have a specific nonce.
-            -->
-            <meta http-equiv="Content-Security-Policy" content="img-src https: data:; style-src 'unsafe-inline' ${webview.cspSource}; script-src 'nonce-${nonce}';">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <link href="${stylesResetUri}" rel="stylesheet">
-                    <link href="${stylesMainUri}" rel="stylesheet">
-            <link href="${cssUri}" rel="stylesheet">
-            <script nonce="${nonce}">
-            </script>
-                </head>
-          <body>
-          <h1 id="a">asdf</h1>
-          <script>
-          function getPage(url, from, to) {
-            var cached=sessionStorage[url];
-            if(!from){from="body";} // default to grabbing body tag
-            if(to && to.split){to=document.querySelector(to);} // a string TO turns into an element
-            if(!to){to=document.querySelector(from);} // default re-using the source elm as the target elm
-            if(cached){return to.innerHTML=cached;} // cache responses for instant re-use re-use
-        
-            var XHRt = new XMLHttpRequest; // new ajax
-            XHRt.responseType='document';  // ajax2 context and onload() event
-            XHRt.onload= function() { sessionStorage[url]=to.innerHTML= XHRt.response.querySelector(from).innerHTML;};
-            XHRt.open("GET", url, true);
-            XHRt.send();
-            return XHRt;
-          }
-          document.getElementById("a").innerHtml = "a";
-          const h = getPage("http://localhost:9000");
-          document.getElementsByTagName('body')[0].innerHTML = h;
-          alert(h);
-      </script>
-                </body>
-                </html>`;
-          */
     }
 }
 exports.WikipagePanel = WikipagePanel;

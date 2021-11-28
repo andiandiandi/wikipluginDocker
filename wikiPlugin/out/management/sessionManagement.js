@@ -4,6 +4,7 @@ exports.SessionManager = void 0;
 const wikilinkHandler_1 = require("./handler/wikilinkHandler");
 const searchHandler_1 = require("./handler/searchHandler");
 const wikipagePanel_1 = require("../wikipagePanel");
+const vscodeUtility_1 = require("./vscodeUtility");
 const debug_1 = require("./debug");
 const vscode = require("vscode");
 const ioclient = require("socket.io-client");
@@ -55,7 +56,7 @@ class Connection {
     }
     connect() {
         try {
-            this.socketClient = ioclient("http://localhost:9000", {
+            this.socketClient = ioclient(`http://${vscodeUtility_1.getLocalIP()}:9000`, {
                 reconnection: false,
             });
             this.socketClient.io.on("connect_error", (error) => {
@@ -112,7 +113,12 @@ class Connection {
     }
     wordCountResponse(arg0, wordCountResponse) {
         const wordCountObj = JSON.parse(arg0);
-        vscode.window.showInformationMessage("words: " + wordCountObj.words + "  chars: " + wordCountObj.chars + "  readtime (seconds): " + wordCountObj.readtimeInSeconds);
+        vscode.window.showInformationMessage("words: " +
+            wordCountObj.words +
+            "  chars: " +
+            wordCountObj.chars +
+            "  readtime (seconds): " +
+            wordCountObj.readtimeInSeconds);
         debug_1.Logger.Instance.print("wordcount: " + arg0, "connection");
     }
     sendInitializeProject(rootFolder) {
