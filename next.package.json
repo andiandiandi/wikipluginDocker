@@ -101,6 +101,6 @@
         "vscode-editorconfig": "https://github.com/theia-ide/editorconfig-vscode/releases/download/v0.14.4/EditorConfig-0.14.4.vsix",
         "vscode-python": "https://open-vsx.org/api/ms-python/python/2020.8.105369/file/ms-python.python-2020.8.105369.vsix",
 	"back-n-forth": "https://open-vsx.org/api/nick-rudenko/back-n-forth/3.1.1/file/nick-rudenko.back-n-forth-3.1.1.vsix",
-	"markdown":"https://open-vsx.org/api/vscode/markdown/1.62.3/file/vscode.markdown-1.62.3.vsix"
+	"markdown-language-features":"https://open-vsx.org/api/vscode/markdown-language-features/1.53.2/file/vscode.markdown-language-features-1.53.2.vsix"
     }
 }
