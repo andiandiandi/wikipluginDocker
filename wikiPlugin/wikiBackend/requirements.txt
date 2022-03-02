@@ -3,3 +3,4 @@ flask_socketio
 peewee
 fuzzywuzzy
 pathtools
+pyopenssl

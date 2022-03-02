@@ -349,4 +349,4 @@ def on_renderWikipage(pathStr):
         error("you have to initialize the project first", request.sid)
 
 
-socketio.run(app, host="0.0.0.0", port=9000)
+socketio.run(app, host="0.0.0.0", port=9000, ssl_context=('cert.pem', 'key.pem'))
