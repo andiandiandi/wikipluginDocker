@@ -61,8 +61,8 @@ ENV HOME /home/theia
 WORKDIR /home/theia
 COPY --from=0 /home/theia /home/theia
 
-COPY ./wikiPlugin/wikiBackend /home/theia
-COPY ./wikiPlugin /home/theia/.theia/extensions/wikiPlugin.vsix/
+COPY ./wikiPlugin_as_VSIX_extension/wikiBackend /home/theia
+COPY ./wikiPlugin_as_VSIX_extension /home/theia/.theia/extensions/wikiPlugin.vsix/
 RUN python requirements.py
 
 EXPOSE 3000

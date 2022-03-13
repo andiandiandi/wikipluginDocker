@@ -1,0 +1,110 @@
+{
+	"name": "personalWikiPlugin",
+	"displayName": "Personal Wiki Plugin",
+	"description": "A Personal Wiki Plugin based on Markdown.",
+	"version": "0.0.1",
+	"publisher": "AL",
+	"repository": {
+		"url": "https://github.com/andiandiandi/TheiaPersonalWikiPlugin"
+	},
+	"engines": {
+		"vscode": "^1.58.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:personalWikiPlugin.QuickstartWiki",
+		"onCommand:personalWikiPlugin.SpawnWikiserver",
+		"onCommand:personalWikiPlugin.ConnectWikiserver",
+		"onCommand:personalWikiPlugin.DisconnectWikiserver",
+		"onCommand:personalWikiPlugin.InitializeWikiserver",
+		"onCommand:personalWikiPlugin.RenderWikipage",
+		"onCommand:personalWikiPlugin.WordCount",
+		"onCommand:personalWikiPlugin.WordCountWholeWiki",
+		"onCommand:personalWikiPlugin.SearchQuery",
+		"onCommand:personalWikiPlugin.Wikilink",
+		"onCommand:personalWikiPlugin.OpenWikipage"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "personalWikiPlugin.QuickstartWiki",
+				"title": "quickstart wiki"
+			},
+			{
+				"command": "personalWikiPlugin.SpawnWikiserver",
+				"title": "spawn wiki server"
+			},
+			{
+				"command": "personalWikiPlugin.ConnectWikiserver",
+				"title": "connect to wiki server"
+			},
+			{
+				"command": "personalWikiPlugin.DisconnectWikiserver",
+				"title": "disconnect from wiki server"
+			},
+			{
+				"command": "personalWikiPlugin.InitializeWikiserver",
+				"title": "initialize wiki"
+			},
+			{
+				"command": "personalWikiPlugin.RenderWikipage",
+				"title": "render wikipage: tab"
+			},
+			{
+				"command": "personalWikiPlugin.WordCount",
+				"title": "count word for current wikipage"
+			},
+			{
+				"command": "personalWikiPlugin.WordCountWholeWiki",
+				"title": "count words for whole wiki"
+			},
+			{
+				"command": "personalWikiPlugin.SearchQuery",
+				"title": "search wiki"
+			},
+			{
+				"command": "personalWikiPlugin.Wikilink",
+				"title": "create wikilink"
+			},
+			{
+				"command": "personalWikiPlugin.OpenWikipage",
+				"title": "open wikipage"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "yarn run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "yarn run compile && yarn run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.3",
+		"@types/mocha": "^8.2.2",
+		"@types/node": "^14.17.20",
+		"@types/socket.io-client": "^3.0.0",
+		"@types/vscode": "^1.58.0",
+		"@typescript-eslint/eslint-plugin": "^4.26.0",
+		"@typescript-eslint/parser": "^4.26.0",
+		"eslint": "^7.27.0",
+		"glob": "^7.1.7",
+		"mocha": "^8.4.0",
+		"typescript": "^4.3.2",
+		"vscode-test": "^1.5.2"
+	},
+	"dependencies": {
+		"base-64": "^1.0.0",
+		"http": "0.0.1-security",
+		"path": "^0.12.7",
+		"socket.io": "^2.4.0",
+		"socket.io-client": "^2.4.0"
+	},
+	"__metadata": {
+		"installedTimestamp": 1647200129806
+	}
+}

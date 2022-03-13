@@ -1,0 +1,6 @@
+flask
+flask_socketio
+peewee
+fuzzywuzzy
+pathtools
+itsdangerous==2.0.1
