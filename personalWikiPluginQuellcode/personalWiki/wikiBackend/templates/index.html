@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=">
+    <title>Opened Notebooks</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --font-size: 16px;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            font-family: "Open Sans", sans-serif;
+        }
+
+        .sid-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10%;
+            margin-left: 30%;
+            margin-right: 30%;
+            padding-bottom: 10%;
+        }
+
+        .sid-container-header {
+            margin-bottom: 2%;
+        }
+
+        h1 {
+            font-size: x-large;
+            margin-bottom: 2%;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+            display: inline-block;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h4 {
+            align-self: center;
+        }
+
+        .sid-container-links {
+            display: flex;
+            flex-direction: column;
+            border: 2px solid black;
+        }
+
+        .sid-container-links {
+            padding-top: 4%;
+            padding-left: 4%;
+            padding-right: 4%;
+
+        }
+
+        .sid-container-btn {
+            padding: 16px;
+            border-radius: 2px;
+            background-color: black;
+            color: white;
+        }
+
+        .sid-container-links-list-item {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 16px;
+        }
+
+        @media only screen and (max-width: 800px) {
+            .sid-container {
+                margin-left: 25%;
+                margin-right: 25%;
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+            .sid-container {
+                margin-left: 20%;
+                margin-right: 20%;
+            }
+        }
+
+        @media only screen and (max-width: 500px) {
+            .sid-container {
+                margin-left: 10%;
+                margin-right: 10%;
+            }
+        }
+
+        @media only screen and (max-width: 400px) {
+            .sid-container {
+                margin-left: 2%;
+                margin-right: 2%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sid-container">
+        <div class="sid-container-header">
+            <h1>
+                Opened desktop wikis by sid:
+            </h1>
+        </div>
+        <div class="sid-container-links">
+            <ul>
+                {% for sid in sids %}
+                <li>
+                    <div class="sid-container-links-list-item">
+                        <h4>sid</h4>
+                        <a class="sid-container-btn" href="{{ url_for('fileHierarchy',sid=sid) }}">
+                            {{ sid }}
+                        </a>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
