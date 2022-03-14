@@ -39,3 +39,10 @@ Das Plugin und alle Abhängigkeiten (Python + Libs) sind vorinstalliert. Die Com
     - ausgeführt ohne ein selektiertes Wort: 
         - Gibt es Grafiken im Wiki, wird man aufgefordert eine auszuwählen, auf die verlinkt werden soll
         - Gibt es keine Grafiken im Wiki, wird ein leerer Imagelink-Tag erstellt
+
+## Weiteres
+
+Es ist standardmäßig schon ein leeres Projekt in Theia geöffnet. Um Funktionen des Plugins nutzen zu können, muss eine Wikiseite in diesem Projekt von Hand erstellt (Markdown-Datei) und im Editor geöffnet werden (Fokus haben). Immer wenn man ein Wiki-Feature ausführen möchte, muss eine Wikiseite, die zu dem in Theia geöffneten Projekt gehört, im Editor Fokus haben. Die API bezieht den Pfad zum Wiki-Ordner (der quasi für jedes Wiki-Feature gebraucht wird) aus der Datei, die gerade im Editor bearbeitet wird... eine andere Möglichkeit gibt es laut API nicht (Einschränkung von VS Code/Theia).
+
+Jedes Wiki-Features loggt Daten die man wie folgt verfolgen kann:
+![example](example.png)
